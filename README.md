@@ -1,1 +1,442 @@
-# site-advocacia
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hugo Nunes | Advogado Criminalista</title>
+    
+    <!-- Google Fonts: Playfair Display para títulos luxuosos e Plus Jakarta Sans para leitura confortável -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para ícones jurídicos e de contato -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN para estilização utilitária e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0B132B',
+                            800: '#1C2541',
+                            700: '#232F52',
+                        },
+                        gold: {
+                            400: '#E5C158',
+                            500: '#C5A059',
+                            600: '#A3803C',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilização personalizada para efeitos visuais do menu e rolagens suaves */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Efeito no fundo com padrão geométrico discreto */
+        .hero-pattern {
+            background-color: #0B132B;
+            background-image: radial-gradient(rgba(197, 160, 89, 0.08) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+
+        /* Indicador animado do menu de navegação */
+        .nav-container {
+            position: relative;
+        }
+
+        .nav-indicator {
+            position: absolute;
+            bottom: -2px;
+            height: 2px;
+            background: linear-gradient(90deg, #C5A059, #E5C158);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+
+        /* Animação suave para botões e cards */
+        .gold-border-glow {
+            transition: all 0.3s ease;
+        }
+        .gold-border-glow:hover {
+            border-color: #C5A059;
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-navy-900 text-slate-200 font-sans antialiased selection:bg-gold-500 selection:text-navy-900">
+
+    <!-- CABEÇALHO / NAVBAR -->
+    <header class="sticky top-0 z-50 bg-navy-900/90 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo / Nome -->
+                <a href="#inicio" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-navy-900 font-serif font-bold text-xl shadow-lg">
+                        HN
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-bold text-lg text-white tracking-wide group-hover:text-gold-400 transition-colors">HUGO NUNES</span>
+                        <span class="text-[10px] tracking-widest text-gold-500 uppercase font-medium">Advocacia Criminal</span>
+                    </div>
+                </a>
+
+                <!-- Navegação Desktop -->
+                <nav class="hidden md:block nav-container">
+                    <ul class="flex items-center space-x-8 text-sm font-medium relative" id="nav-list">
+                        <li>
+                            <a href="#inicio" class="nav-link text-white hover:text-gold-400 py-2 transition-colors inline-block" data-index="0">
+                                Início
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#escolha-nos" class="nav-link text-slate-300 hover:text-gold-400 py-2 transition-colors inline-block" data-index="1">
+                                Escolha-nos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contato" class="nav-link text-slate-300 hover:text-gold-400 py-2 transition-colors inline-block" data-index="2">
+                                Contato
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Indicador deslizante do menu -->
+                    <div id="indicator" class="nav-indicator"></div>
+                </nav>
+
+                <!-- Botão de Ação Direta -->
+                <div class="hidden md:flex items-center">
+                    <a href="#contato" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 text-navy-900 font-semibold text-xs uppercase tracking-wider hover:from-gold-400 hover:to-gold-500 transition-all shadow-lg hover:shadow-gold-500/20">
+                        <i class="fa-solid fa-phone"></i>
+                        Plantão 24h
+                    </a>
+                </div>
+
+                <!-- Botão Menu Mobile -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white text-2xl focus:outline-none" aria-label="Abrir Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-800 border-b border-slate-700/50 px-4 pt-3 pb-6">
+            <ul class="flex flex-col space-y-4 text-base font-medium">
+                <li><a href="#inicio" class="mobile-link text-white block hover:text-gold-400">Início</a></li>
+                <li><a href="#escolha-nos" class="mobile-link text-slate-300 block hover:text-gold-400">Escolha-nos</a></li>
+                <li><a href="#contato" class="mobile-link text-slate-300 block hover:text-gold-400">Contato</a></li>
+            </ul>
+            <a href="#contato" class="mt-5 w-full inline-flex justify-center items-center gap-2 px-5 py-3 rounded-xl bg-gold-500 text-navy-900 font-bold text-sm">
+                <i class="fa-solid fa-phone"></i>
+                Plantão de Urgência 24h
+            </a>
+        </div>
+    </header>
+
+    <!-- SEÇÃO HERO (PRINCIPAL) -->
+    <section id="inicio" class="hero-pattern relative min-h-[calc(100vh-80px)] flex items-center py-16 lg:py-24 overflow-hidden border-b border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Conteúdo Textual -->
+                <div class="lg:col-span-7 space-y-8">
+                    
+                    <!-- Selo de Especialidade -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-800/80 border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
+                        Especialista em Defesa Criminal
+                    </div>
+
+                    <!-- Título Principal sem quebras manuais de linha desnecessárias -->
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight lg:leading-[1.15]">
+                        Escritório especializado em <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-500 to-amber-200">direito penal</span>
+                    </h1>
+
+                    <!-- Parágrafo de Apresentação Refinado -->
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
+                        Enfrentar um problema na área criminal exige mais do que conhecimento técnico: exige estratégia, rapidez e comprometimento. Nosso escritório é especializado em Direito Penal, oferecendo uma defesa firme, humanizada e pautada no respeito às garantias fundamentais de cada cliente.
+                    </p>
+
+                    <!-- Ações Rápidas -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                        <a href="https://wa.me/5500000000000" target="_blank" class="inline-flex justify-center items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-navy-900 font-bold text-base hover:from-gold-400 hover:to-gold-500 transition-all shadow-xl shadow-gold-500/10 hover:shadow-gold-500/20 transform hover:-translate-y-0.5">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            Falar com o Advogado
+                        </a>
+                        <a href="#escolha-nos" class="inline-flex justify-center items-center gap-2 px-8 py-4 rounded-xl bg-navy-800 hover:bg-navy-700 text-white font-medium text-base border border-slate-700/80 transition-all">
+                            Conhecer Nossos Diferenciais
+                            <i class="fa-solid fa-arrow-down text-sm text-gold-500"></i>
+                        </a>
+                    </div>
+
+                    <!-- Métricas / Diferenciais Rápidos -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80 max-w-xl">
+                        <div>
+                            <span class="block font-serif text-2xl font-bold text-white">24/7</span>
+                            <span class="text-xs text-slate-400">Atendimento de Emergência</span>
+                        </div>
+                        <div>
+                            <span class="block font-serif text-2xl font-bold text-white">100%</span>
+                            <span class="text-xs text-slate-400">Sigilo Absoluto</span>
+                        </div>
+                        <div>
+                            <span class="block font-serif text-2xl font-bold text-white">Foco</span>
+                            <span class="text-xs text-slate-400">Defesa Estratégica</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Card de Destaque / Apresentação de Impacto -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Brilho ao fundo -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gold-500/20 to-navy-700 rounded-3xl blur-xl opacity-50"></div>
+                        
+                        <div class="relative bg-navy-800 border border-slate-700/80 rounded-2xl p-8 shadow-2xl space-y-6">
+                            <div class="flex items-center gap-4 border-b border-slate-700/60 pb-6">
+                                <div class="w-16 h-16 rounded-full bg-navy-900 border-2 border-gold-500 flex items-center justify-center text-gold-400 text-2xl">
+                                    <i class="fa-solid fa-scale-balanced"></i>
+                                </div>
+                                <div>
+                                    <h2 class="font-serif font-bold text-xl text-white">Atendimento Imediato</h2>
+                                    <p class="text-xs text-slate-400">Garantia dos seus direitos em todas as fases</p>
+                                </div>
+                            </div>
+
+                            <ul class="space-y-4 text-sm text-slate-300">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-shield-halved text-gold-500 mt-1"></i>
+                                    <span>Acompanhamento em Prisões em Flagrante e Delegacias.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-gavel text-gold-500 mt-1"></i>
+                                    <span>Pedidos de Liberdade Provisória e Habeas Corpus.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-file-contract text-gold-500 mt-1"></i>
+                                    <span>Defesa Completa em Processos Criminais e Inquéritos.</span>
+                                </li>
+                            </ul>
+
+                            <div class="pt-2">
+                                <a href="tel:5500000000000" class="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-navy-900 border border-gold-500/40 text-gold-400 font-medium text-sm hover:bg-gold-500 hover:text-navy-900 transition-all">
+                                    <i class="fa-solid fa-phone-volume"></i>
+                                    Ligar para o Plantão Criminal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO ESCOLHA-NOS -->
+    <section id="escolha-nos" class="py-20 bg-navy-900 border-b border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <h2 class="text-gold-500 text-xs font-semibold tracking-widest uppercase">Por que nos escolher</h2>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white">Compromisso inabalável com a sua liberdade</h3>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Atuação especializada com foco na proteção integral dos direitos constitucionais e na construção de defesas técnicas de alta precisão.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="bg-navy-800/60 border border-slate-800 rounded-2xl p-8 gold-border-glow flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl">
+                            <i class="fa-solid fa-chess-knight"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-xl text-white">Atuação Estratégica</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Análise minuciosa das provas e construção de teses defensivas customizadas para cada tipo de procedimento criminal.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-navy-800/60 border border-slate-800 rounded-2xl p-8 gold-border-glow flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-xl text-white">Agilidade & Prontidão</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Intervenção rápida em momentos decisivos, indispensável para mitigar riscos e assegurar a liberdade.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-navy-800/60 border border-slate-800 rounded-2xl p-8 gold-border-glow flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-xl text-white">Defesa Humanizada</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Respeito absoluto à dignidade do cliente e suporte transparente aos familiares durante todo o processo.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEÇÃO CONTATO -->
+    <section id="contato" class="py-20 bg-navy-800/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-navy-800 border border-slate-700/80 rounded-3xl p-8 lg:p-12 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-6 space-y-6">
+                        <h2 class="text-gold-500 text-xs font-semibold tracking-widest uppercase">Entre em Contato</h2>
+                        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white">Precisa de assistência jurídica criminal imediata?</h3>
+                        <p class="text-slate-300 text-base leading-relaxed">
+                            Nossa equipe está pronta para avaliar o seu caso com a urgência e o sigilo que a situação requer. Clique abaixo para iniciar seu atendimento prioritário.
+                        </p>
+
+                        <div class="space-y-4 pt-4">
+                            <div class="flex items-center gap-4 text-slate-300">
+                                <div class="w-10 h-10 rounded-lg bg-navy-900 border border-slate-700 flex items-center justify-center text-gold-400">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400">Telefone / WhatsApp</p>
+                                    <p class="font-medium text-white">(00) 90000-0000</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 text-slate-300">
+                                <div class="w-10 h-10 rounded-lg bg-navy-900 border border-slate-700 flex items-center justify-center text-gold-400">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400">E-mail Corporativo</p>
+                                    <p class="font-medium text-white">contato@hugonunesadvocacia.com.br</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botão de Ação em Destaque no Contato -->
+                    <div class="lg:col-span-6 flex flex-col items-center justify-center p-8 bg-navy-900/80 border border-slate-700/50 rounded-2xl text-center space-y-6">
+                        <div class="w-16 h-16 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-3xl">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-serif font-bold text-2xl text-white">Atendimento via WhatsApp</h4>
+                            <p class="text-slate-400 text-sm mt-1">Converse diretamente com o advogado de forma ágil e segura.</p>
+                        </div>
+                        <a href="https://wa.me/5500000000000" target="_blank" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-navy-900 font-bold text-base hover:from-gold-400 hover:to-gold-500 transition-all shadow-lg hover:shadow-gold-500/20">
+                            Iniciar Conversa Agoraind
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-navy-900 border-t border-slate-800 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <p>&copy; 2026 Hugo Nunes Advocacia Criminal. Todos os direitos reservados.</p>
+            <p class="flex items-center gap-1">
+                <i class="fa-solid fa-shield-cat text-gold-500"></i> Defesa Penal & Garantias Constitucionais
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT PARA INTERATIVIDADE E NAVEGAÇÃO -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const indicator = document.getElementById('indicator');
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            // Atualiza a posição do indicador animado abaixo dos links da navbar
+            function updateIndicator(element) {
+                if (!element || !indicator) return;
+                indicator.style.width = `${element.offsetWidth}px`;
+                indicator.style.left = `${element.offsetLeft}px`;
+            }
+
+            // Inicializa o indicador no primeiro link ativo
+            const activeLink = document.querySelector('.nav-link') || navLinks[0];
+            if (activeLink) {
+                updateIndicator(activeLink);
+            }
+
+            // Eventos ao passar o mouse sobre os links
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', (e) => {
+                    updateIndicator(e.target);
+                });
+
+                link.addEventListener('click', (e) => {
+                    navLinks.forEach(l => l.classList.remove('text-white'));
+                    navLinks.forEach(l => l.classList.add('text-slate-300'));
+                    e.target.classList.remove('text-slate-300');
+                    e.target.classList.add('text-white');
+                });
+            });
+
+            // Reseta o indicador para o item ativo ao tirar o mouse da nav
+            const navList = document.getElementById('nav-list');
+            if (navList) {
+                navList.addEventListener('mouseleave', () => {
+                    const currentActive = document.querySelector('.nav-link.text-white') || navLinks[0];
+                    updateIndicator(currentActive);
+                });
+            }
+
+            // Toggle do Menu Mobile
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+
+            // Atualização de janela para recalcular posição do indicador
+            window.addEventListener('resize', () => {
+                const currentActive = document.querySelector('.nav-link.text-white') || navLinks[0];
+                updateIndicator(currentActive);
+            });
+        });
+    </script>
+</body>
+
+</html>
