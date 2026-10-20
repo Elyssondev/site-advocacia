@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Hugo Nunes Advocacia logo">
+  <defs>
+    <linearGradient id="gold" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#F4D98A"/>
+      <stop offset="50%" stop-color="#C5A059"/>
+      <stop offset="100%" stop-color="#A3803C"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="128" fill="#0B132B"/>
+  <path d="M144 96h72v128h80V96h72v320h-72V266h-80v150h-72V96z" fill="url(#gold)" opacity="0.96"/>
+  <path d="M125 160c14-38 47-59 81-59h62c39 0 73 21 87 59l15 48c8 26-6 54-33 65l-48 19c-14 6-30 6-44 0l-48-19c-27-11-41-39-33-65l15-48z" fill="none" stroke="url(#gold)" stroke-width="18" opacity="0.9"/>
+  <text x="256" y="330" text-anchor="middle" font-size="122" font-family="Georgia, 'Times New Roman', serif" font-weight="700" fill="#F9F4E8" letter-spacing="10">HN</text>
+</svg>
